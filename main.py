@@ -1,9 +1,10 @@
-from secrets import username, password
 from selenium import webdriver
 from time import sleep
 
 class BadooBot():
     def __init__(self):
+        self.username = input("Nom utilisateur Facebook :")
+        self.password = input("Mot de passe Facebook :")
         self.driver = webdriver.Chrome("./Driver/chromedriver")
         self.driver.get("https://badoo.com/fr/")
 
@@ -16,10 +17,10 @@ class BadooBot():
         self.driver.switch_to_window(self.driver.window_handles[1])
 
         email_in = self.driver.find_element_by_xpath('//*[@id="email"]')
-        email_in.send_keys(username)
+        email_in.send_keys(self.username)
 
         pw_in = self.driver.find_element_by_xpath('//*[@id="pass"]')
-        pw_in.send_keys(password)
+        pw_in.send_keys(self.password)
 
         login_btn = self.driver.find_element_by_xpath('//*[@id="u_0_0"]')
         login_btn.click()
